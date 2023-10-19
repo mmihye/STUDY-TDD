@@ -15,18 +15,28 @@ public class PasswordStrengthMeterTest {
 
     @Test
     void meetsAllCriteria_Then_Strong(){
-        assertEquals("ab12!@AB",PasswordStrength.STRONG);
-        assertEquals("abc1!Add",PasswordStrength.STRONG);
+        assertStrength("ab12!@AB",PasswordStrength.STRONG);
+        assertStrength("abc1!Add",PasswordStrength.STRONG);
 
     }
 
     @Test
     void meetsOtherCriteria_except_for_Length_Then_Normal(){
-        assertEquals("ab12!@A",PasswordStrength.NORMAL);
+        assertStrength("ab12!@A",PasswordStrength.NORMAL);
     }
 
     @Test
     void meetsOtherCriteria_except_for_number_Then_Normal(){
-        assertEquals("ab!@ABqwer",PasswordStrength.NORMAL);
+        assertStrength("ab!@ABqwer",PasswordStrength.NORMAL);
+    }
+
+    @Test
+    void nullInput_Then_Invalid(){
+        assertStrength(null,PasswordStrength.INVALID);
+    }
+
+    @Test
+    void emptyInput_Then_Invalid() {
+        assertStrength("", PasswordStrength.INVALID);
     }
 }
