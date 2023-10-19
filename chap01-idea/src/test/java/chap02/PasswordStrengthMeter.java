@@ -12,15 +12,12 @@ public class PasswordStrengthMeter {
 //            return PasswordStrength.NORMAL;
 //        }
 
-
-        //여섯번째 테스트 + 두번째 테스트
         boolean lengthEnough = s.length() >= 8;
-        //세번째 테스트
         boolean containsNum = meetsContainingNumberCriteria(s);
-        //다섯번째 테스트
         boolean containsUpp = meetsContainingUppercaseCriteria(s);
 
         if(lengthEnough && !containsNum && !containsUpp) return  PasswordStrength.WEAK;
+        if(!lengthEnough && containsNum && !containsUpp) return PasswordStrength.WEAK;
         if(!containsNum) return PasswordStrength.NORMAL;
         if(!containsUpp) return PasswordStrength.NORMAL;
         if(!lengthEnough) return PasswordStrength.NORMAL;
